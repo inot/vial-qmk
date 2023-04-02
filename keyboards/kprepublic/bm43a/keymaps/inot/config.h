@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 11 }
 
+// USB: 1000Hz 
+#define USB_POLLING_INTERVAL_MS 1
 
 /* key matrix size */
 #define MATRIX_ROWS 4
