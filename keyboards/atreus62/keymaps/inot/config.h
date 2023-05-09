@@ -11,3 +11,8 @@
 
 // Five Layers
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
+// Backlight
+// #define BACKLIGHT_PIN B7
+// #define RGBLED_NUM 8
+// #define RGB_DI_PIN E2
