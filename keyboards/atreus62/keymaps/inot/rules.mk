@@ -11,10 +11,11 @@ EXTRAKEY_ENABLE = yes # 500 bytes
 TAP_DANCE_ENABLE = yes # 2000 bytes
 GRAVE_ESC_ENABLE = yes # 100 bytes
 QMK_SETTINGS = yes # 3000 bytes
+COMBO_ENABLE = yes # 2000 bytes
+
 
 # Disabled Features
 MOUSEKEY_ENABLE = no
-COMBO_ENABLE = no
 MAGIC_ENABLE = no
 BOOTMAGIC_ENABLE = no
 COMMAND_ENABLE = no
