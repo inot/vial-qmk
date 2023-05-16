@@ -21,12 +21,20 @@
 #include QMK_KEYBOARD_H
 #include "oled.c"
 
+
+#define _DEFAULT 0
+#define _FPS 1
+#define _LOWER 2
+#define _RAISE 3
+#define _WOW 4
+
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
 
 // CS GO
 enum custom_keycodes {
   A_D = SAFE_RANGE,
-  D_A 
+  D_A, 
+  JUMP_SIT
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -47,42 +55,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16_delay(KC_A, 25);
       }
       break;
-
+    case JUMP_SIT:
+      if (record->event.pressed) {
+          register_code(KC_SPC);
+          register_code(KC_LCTL);
+        } else {
+          unregister_code(KC_SPC);
+          unregister_code(KC_LCTL);
+        }
   }
   return true;
 }
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[0] = LAYOUT(KC_GESC             , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
+[_DEFAULT] = LAYOUT(KC_GESC             , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
              KC_TAB              , KC_Q                , KC_W                , KC_E                , KC_R                , KC_T                , KC_Y                , KC_U                , KC_I                , KC_O                , KC_P                , KC_LBRACKET         , KC_LSHIFT           , 
              KC_A                , KC_S                , KC_D                , KC_F                , KC_G                , KC_H                , KC_J                , KC_K                , KC_L                , KC_SCOLON           , KC_QUOTE            , KC_LSHIFT           , 
              KC_Z                , KC_X                , KC_C                , KC_V                , KC_B                , KC_MUTE             , DF(0)               , KC_N                , KC_M                , KC_COMMA            , KC_DOT              , KC_SLASH            , KC_SFTENT           , 
              KC_LGUI             , KC_LALT             , KC_LCTRL            , MO(2)               , KC_SPACE            , KC_ENTER            , MO(3)               , KC_DELETE           , KC_HOME             , KC_END              ),
 
 
-[1] = LAYOUT(KC_TRNS             , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
+[_FPS] = LAYOUT(KC_TRNS             , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
              KC_TAB              , KC_Q                , KC_W                , KC_E                , KC_R                , KC_T                , KC_Y                , KC_U                , KC_I                , KC_O                , KC_P                , KC_LBRACKET         , KC_LSHIFT           , 
              A_D                 , KC_S                , D_A                 , KC_F                , KC_G                , KC_H                , KC_J                , KC_K                , KC_L                , KC_SCOLON           , KC_QUOTE            , KC_LSHIFT           , 
              KC_Z                , KC_X                , KC_C                , KC_V                , KC_B                , KC_TRNS             , KC_TRNS             , KC_N                , KC_M                , KC_COMMA            , KC_DOT              , KC_SLASH            , KC_TRNS             , 
-             KC_NO               , KC_NO               , KC_NO               , KC_LCTRL            , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_NO               , KC_NO               , KC_NO               ),
+             KC_NO               , KC_NO               , JUMP_SIT            , KC_LCTRL            , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_NO               , KC_NO               , KC_NO               ),
 
 
-[2] = LAYOUT(KC_TRNS             , KC_F1               , KC_F2               , KC_F3               , KC_F4               , KC_F5               , KC_F6               , KC_F7               , KC_F8               , KC_F9               , KC_F10              , KC_F11              , 
+[_LOWER] = LAYOUT(KC_TRNS             , KC_F1               , KC_F2               , KC_F3               , KC_F4               , KC_F5               , KC_F6               , KC_F7               , KC_F8               , KC_F9               , KC_F10              , KC_F11              , 
              KC_GRAVE            , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_F12              , KC_TRNS             , 
              LSFT(KC_1)          , LSFT(KC_2)          , LSFT(KC_3)          , LSFT(KC_4)          , LSFT(KC_5)          , LSFT(KC_6)          , LSFT(KC_7)          , LSFT(KC_8)          , LSFT(KC_9)          , LSFT(KC_0)          , LSFT(KC_BSLASH)     , KC_TRNS             , 
              KC_EQUAL            , KC_MINUS            , LSFT(KC_EQUAL)      , LSFT(KC_LBRACKET)   , LSFT(KC_RBRACKET)   , KC_TRNS             , KC_TRNS             , KC_LBRACKET         , KC_RBRACKET         , KC_SCOLON           , LSFT(KC_SCOLON)     , KC_BSLASH           , KC_TRNS             , 
              KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             ),
 
 
-[3] = LAYOUT(KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_CALC             , KC_TRNS             , KC_TRNS             , KC_TRNS             , LGUI(KC_L)          , KC_DELETE           , 
+[_RAISE] = LAYOUT(KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_CALC             , KC_TRNS             , KC_TRNS             , KC_TRNS             , LGUI(KC_L)          , KC_DELETE           , 
              KC_TRNS             , KC_INSERT           , KC_PSCREEN          , KC_APPLICATION      , KC_NO               , KC_NO               , KC_PGUP             , KC_TRNS             , KC_UP               , KC_TRNS             , KC_TRNS             , KC_BSPACE           , KC_TRNS             , 
              KC_LALT             , KC_LCTRL            , KC_LSHIFT           , KC_NO               , KC_CAPSLOCK         , KC_PGDOWN           , KC_LEFT             , KC_DOWN             , KC_RIGHT            , KC_DELETE           , KC_BSPACE           , KC_TRNS             , 
              LCTL(KC_Z)          , LCTL(KC_X)          , LCTL(KC_C)          , LCTL(KC_V)          , KC_NO               , KC_TRNS             , KC_TRNS             , KC_NO               , KC_HOME             , KC_NO               , KC_END              , KC_NO               , KC_TRNS             , 
              KC_LGUI             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             , KC_TRNS             ),
 
 
-[4] = LAYOUT(KC_ESCAPE           , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
+[_WOW] = LAYOUT(KC_ESCAPE           , KC_1                , KC_2                , KC_3                , KC_4                , KC_5                , KC_6                , KC_7                , KC_8                , KC_9                , KC_0                , KC_BSPACE           , 
              KC_TAB              , KC_Q                , KC_W                , KC_E                , KC_R                , KC_T                , KC_Y                , KC_U                , KC_I                , KC_O                , KC_P                , KC_LBRACKET         , KC_LSHIFT           , 
              KC_A                , KC_S                , KC_D                , KC_F                , KC_G                , KC_H                , KC_J                , KC_K                , KC_L                , KC_SCOLON           , KC_QUOTE            , KC_LSHIFT           , 
              KC_Z                , KC_X                , KC_C                , KC_V                , KC_B                , KC_TRNS             , KC_TRNS             , KC_N                , KC_M                , KC_COMMA            , KC_DOT              , KC_SLASH            , KC_SFTENT           , 
@@ -90,10 +105,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [0] = {  ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(KC_LEFT, KC_RIGHT)},
-    [1] = {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS)  },
-    [2] = {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS)  },
-    [3] = {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(DF(1), DF(4)) },
-    [4] = {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
+    [_DEFAULT] = {  ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(KC_LEFT, KC_RIGHT)},
+    [_FPS] =     {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS)  },
+    [_LOWER] =   {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS)  },
+    [_RAISE] =   {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(DF(1), DF(4)) },
+    [_WOW] =     {  ENCODER_CCW_CW(KC_TRNS, KC_TRNS),           ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
 };
 #endif

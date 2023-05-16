@@ -2,7 +2,6 @@
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
 #include QMK_KEYBOARD_H
-
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -15,12 +14,13 @@
 // CS GO
 enum custom_keycodes {
   A_D = SAFE_RANGE,
-  D_A 
+  D_A,
+  JUMP_SIT
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case A_D :
+    case A_D:
       if (record->event.pressed) {
         register_code(KC_A);
       } else {
@@ -36,7 +36,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16_delay(KC_A, 25);
       }
       break;
-
+    case JUMP_SIT:
+      if (record->event.pressed) {
+          register_code(KC_SPC);
+          register_code(KC_LCTL);
+        } else {
+          unregister_code(KC_SPC);
+          unregister_code(KC_LCTL);
+        }
   }
   return true;
 }
@@ -48,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_Q,    KC_W,    KC_E,    KC_R,        KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRACKET ,
     KC_CAPSLOCK,    KC_A,    KC_S,    KC_D,    KC_F,        KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT ,
     KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,        KC_B,                        KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_SFTENT, 
-    RGUI(KC_SPACE), KC_NO,   KC_LGUI, KC_LALT, KC_LCTL,     MO(1),   KC_SPC,   KC_ENT,   MO(2),   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO
+    RGUI(KC_SPACE), JUMP_SIT,   KC_LGUI, KC_LALT, KC_LCTL,     MO(1),   KC_SPC,   KC_ENT,   MO(2),   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO
   ),
 
   [_RAISE] = LAYOUT(

@@ -21,7 +21,3 @@ BOOTMAGIC_ENABLE = no
 COMMAND_ENABLE = no
 CONSOLE_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
-
-# Backlight
-# BACKLIGHT_ENABLE = yes         # Enable keyboard backlight functionality
-# RGBLIGHT_ENABLE = yes          # Enable keyboard RGB underglow
