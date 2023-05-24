@@ -22,14 +22,6 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 * Grave ESC enabled and fix for ctrl-shift-esc at Windows.
 * Tap Dance enabled.
 
-## Keymap creation steps
-
-* Upload *kprepublic_bm43a_layout_inot.json* to [QMK Configurator](https://config.qmk.fm/)
-* Change keymap and download json.
-* Copy content of downloaded json file to *kprepublic_bm43a_layout_inot.json*.
-* Execute command `qmk json2c keyboards/kprepublic/bm43a/keymaps/inot/kprepublic_bm43a_layout_inot.json`
-* Copy result of command to *keymap.c* file.
-
 ## About
 
 * [Telegram](https://t.me/inotka)
