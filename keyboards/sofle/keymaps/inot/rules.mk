@@ -4,7 +4,6 @@ LTO_ENABLE = yes
 # Vial Enable
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
-VIAL_INSECURE = no
 
 # Encoders Enable
 ENCODER_MAP_ENABLE = yes

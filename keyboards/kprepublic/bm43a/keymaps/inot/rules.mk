@@ -16,8 +16,5 @@ MOUSEKEY_ENABLE = no           # Disable MouseKeys
 TAP_DANCE_ENABLE = yes         # TapDance Enable
 
 LTO_ENABLE = yes               # For reduce size
-QMK_SETTINGS = no             # For reduce size
+QMK_SETTINGS = no              # For reduce size
 KEY_OVERRIDE_ENABLE = no       # Disable Keyoverride 
-
-
-VIAL_INSECURE = no             # Secure Vail
