@@ -13,7 +13,6 @@ GRAVE_ESC_ENABLE = yes # 100 bytes
 QMK_SETTINGS = yes # 3000 bytes
 COMBO_ENABLE = yes # 2000 bytes
 
-
 # Disabled Features
 MOUSEKEY_ENABLE = no
 MAGIC_ENABLE = no
