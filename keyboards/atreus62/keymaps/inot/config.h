@@ -10,3 +10,5 @@
 // Five Layers
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
+#define VIAL_UNLOCK_COMBO_COLS { 3, 3 }
