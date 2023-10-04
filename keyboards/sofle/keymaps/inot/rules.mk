@@ -11,11 +11,11 @@ ENCODER_ENABLE = yes
 
 # Screen Enable
 OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
+OLED_DRIVER = ssd1306
 
 #Features
 EXTRAKEY_ENABLE = yes # 500 bytes
-TAP_DANCE_ENABLE = yes # 2000 bytes
+TAP_DANCE_ENABLE = no # 2000 bytes
 RGBLIGHT_ENABLE = yes 
 GRAVE_ESC_ENABLE = yes # 100 bytes
 

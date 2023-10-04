@@ -47,7 +47,8 @@
 #define SPLIT_LED_STATE_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
-    #define RGB_DI_PIN D3
+    #define WS2812_DI_PIN D3
+    // #define RGB_DI_PIN D3
     #undef RGBLED_NUM
     #define RGBLED_NUM 14
 	#define RGBLED_SPLIT { RGBLED_NUM/2, RGBLED_NUM/2 }
