@@ -17,12 +17,18 @@
 #ifdef OLED_ENABLE
 #    include QMK_KEYBOARD_H
 
+#    define _DEFAULT 0
+#    define _FPS 1
+#    define _WOW 2
+#    define _LOWER 3
+#    define _RAISE 4
+
 static void print_status_narrow(void) {
     oled_write_P(PSTR("inot"), false);
     oled_write_P(PSTR("\n\n\n"), false);
     // Print current mode
-    switch (get_highest_layer(layer_state|default_layer_state)) {
-        case 0:
+    switch (get_highest_layer(layer_state | default_layer_state)) {
+        case _DEFAULT:
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
         default:
@@ -32,24 +38,24 @@ static void print_status_narrow(void) {
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
-    switch (get_highest_layer(layer_state|default_layer_state)) {
-        case 0:
+    switch (get_highest_layer(layer_state | default_layer_state)) {
+        case _DEFAULT:
             oled_write_P(PSTR("Base\n"), false);
             rgblight_setrgb(0, 20, 20);
             break;
-        case 1:
+        case _FPS:
             oled_write_P(PSTR("FPS"), false);
             rgblight_setrgb(20, 0, 35);
             break;
-        case 2:
+        case _LOWER:
             oled_write_P(PSTR("Lower"), false);
             rgblight_setrgb(0, 20, 0);
             break;
-        case 3:
+        case _RAISE:
             oled_write_P(PSTR("Raise"), false);
             rgblight_setrgb(20, 0, 0);
             break;
-        case 4:
+        case _WOW:
             oled_write_P(PSTR("WoW"), false);
             rgblight_setrgb(25, 20, 0);
             break;
@@ -59,7 +65,7 @@ static void print_status_narrow(void) {
 
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_P(PSTR("\n\n"), false);
-    if (led_usb_state.caps_lock) { 
+    if (led_usb_state.caps_lock) {
         oled_write_P(PSTR("CAPS"), false);
     } else {
         oled_write_P(PSTR("    "), false);

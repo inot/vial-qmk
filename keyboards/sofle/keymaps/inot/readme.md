@@ -7,3 +7,7 @@ Features:
 - Symmetric modifiers (CMD/Super, Alt/Opt, Ctrl, Shift)
 - Vial support
   - Left & Right encoders can be configured!
+
+```bash
+qmk flash -kb sofle -km inot -e CONVERT_TO=helios
+```
